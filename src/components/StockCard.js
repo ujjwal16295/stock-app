@@ -16,33 +16,33 @@ export const StockCard = (props) => {
    <div className='text-3xl  text-white col-span-3 text-left mx-2 my-2'>{props.stock.index}: {props.stock.name}
     </div>
 
-    <div className='text-xl  text-gray-200 text-left m-2 '>currentPrice:
+    <div className='text-xl  text-gray-200 text-left m-2 '>Price:
        <div className='text-black'>Rs.{props.stock.currentPrice}
        </div>
     </div>
 
-    <div className='text-xl  text-gray-200 text-left m-2 '>high:
+    <div className='text-xl  text-gray-200 text-left m-2 '>High:
        <div className=' text-black   '>Rs.{props.stock.highestPrice}
        </div>
     </div>
 
-    <div className='text-xl  text-gray-200 text-left m-2 '>low:
+    <div className='text-xl  text-gray-200 text-left m-2 '>Low:
        <div className=' text-black   '>Rs.{props.stock.lowestPrice}
        </div>
     </div>
 
-    <div className='text-xl  text-gray-200 text-left m-2 '>roe:
+    <div className='text-xl  text-gray-200 text-left m-2 '>Roe:
        <div className='text-black'>{props.stock.roe}%
        </div>
     </div>
 
-    <div className='text-xl  text-gray-200 text-left m-2 '>roce:
-       <div className=' text-black   '>{props.stock.roce}%
+    <div className='text-xl  text-gray-200 text-left m-2 '>Roce:
+       <div className=' text-black    '>{props.stock.roce}%
        </div>
     </div>
 
-    <div className='text-xl  text-gray-200 text-left m-2 '>pe:
-       <div className=' text-black   '>{props.stock.pe}%
+    <div className='text-xl  text-gray-200 text-left m-2 '>Pe:
+       <div className=' text-black  text-wrap '>{props.stock.pe}%
        </div>
     </div>
       
@@ -60,17 +60,17 @@ export const StockCard = (props) => {
        </div>
     </div>
 
-    <div className='text-xl  text-gray-200 text-left m-2 '>cp5
+    <div className='text-xl  text-gray-200 text-left m-2 '>cp5:
        <div className=' text-black   '>{props.stock.cp5}%
        </div>
     </div>
 
-    <div className='text-xl  text-gray-200 text-left m-2 '>cp3
+    <div className='text-xl  text-gray-200 text-left m-2 '>cp3:
        <div className=' text-black   '>{props.stock.cp3}%
        </div>
     </div>
 
-    <div className='text-xl  text-gray-200 text-left m-2 '>csg10
+    <div className='text-xl  text-gray-200 text-left m-2 '>csg10:
        <div className='text-black'>{props.stock.csg10}%
        </div>
     </div>
