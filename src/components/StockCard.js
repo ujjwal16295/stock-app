@@ -11,7 +11,7 @@ export const StockCard = (props) => {
    <ReactCardFlip isFlipped={flip}
    flipDirection="horizontal">
    <div className='shadow-md shadow-blue-300 hover:shadow-xl hover:shadow-yellow-300'>
-   <div onClick={() => setFlip(!flip)} className={` rounded-lg border-2 border-black grid gap-6 grid-cols-3  ${props.stock.buyOrNot==="buy"?"bg-green-400":"bg-red-400"} hover:scale-110`}  >
+   <div onClick={() => setFlip(!flip)} className={` sm:text-pretty rounded-lg border-2 border-black grid gap-6 grid-cols-3  ${props.stock.buyOrNot==="buy"?"bg-green-400":"bg-red-400"} hover:scale-110`}  >
    
    <div className='text-3xl  text-white col-span-3 text-left mx-2 my-2'>{props.stock.index}: {props.stock.name}
     </div>
@@ -42,7 +42,7 @@ export const StockCard = (props) => {
     </div>
 
     <div className='text-xl  text-gray-200 text-left m-2 '>Pe:
-       <div className=' text-black  text-wrap '>{props.stock.pe}%
+       <div className=' text-black   '>{props.stock.pe}%
        </div>
     </div>
       
