@@ -8,7 +8,6 @@ import StockService from '../services/StockService'
 
 export const StocksList = () => {
     const [stocks,setStocks]=useState([])
-    const opacityVal=100
   
 
     const getStocks=async()=>{
@@ -24,7 +23,7 @@ export const StocksList = () => {
   
 
   return (
-    <>
+    <div>
          {stocks.length===0?<div className='h-screen flex items-center justify-center  '><div className='text-4xl'>stocks loading</div></div>:null}
 
      <div className='flex items-center justify-center my-4'> 
@@ -46,6 +45,6 @@ export const StocksList = () => {
      })}
 
     </div>
-    </>
+    </div>
   )
 }
