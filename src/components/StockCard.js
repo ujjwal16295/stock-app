@@ -45,7 +45,9 @@ export const StockCard = (props) => {
        <div className=' text-black   '>{props.stock.pe}%
        </div>
     </div>
-      
+
+    <div className='text-base  text-white col-span-3 text-center mx-2 my-2'>current stock is <div className='text-black'>{Math.sign(props.stock.highestDiffPercentage)===-1?(props.stock.highestDiffPercentage.toFixed(2))*-1:props.stock.highestDiffPercentage.toFixed(2)}%  {Math.sign(props.stock.highestDiffPercentage)===-1?"up":Math.sign(props.stock.highestDiffPercentage)===0?"same":"down"} </div> {Math.sign(props.stock.highestDiffPercentage)===0?"to":"from"} highest price
+     </div> 
    </div>
    </div>
 
@@ -84,6 +86,11 @@ export const StockCard = (props) => {
        <div className=' text-black   '>{props.stock.csg3}%
        </div>
     </div>
+
+    <div className='text-base  text-white col-span-3 text-center mx-2 my-2'>current stock is <div className='text-black'>{Math.sign(props.stock.lowestDiffPercentage)===-1?(props.stock.lowestDiffPercentage.toFixed(2))*-1:props.stock.lowestDiffPercentage.toFixed(2)}%  {Math.sign(props.stock.lowestDiffPercentage)===-1?"down":Math.sign(props.stock.lowestDiffPercentage)===0?"same":"up"} </div> {Math.sign(props.stock.lowestDiffPercentage)===0?"to":"from"} lowest price
+     </div> 
+
+    
       
    </div>
    </div>
