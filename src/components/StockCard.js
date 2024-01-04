@@ -46,6 +46,11 @@ export const StockCard = (props) => {
        </div>
     </div>
 
+    <div className='text-base  text-gray-200 text-center m-2 '>ttm(cp):
+       <div className=' text-black   '>{props.stock.pttm}%
+       </div>
+    </div>
+
     <div className='text-base  text-white col-span-3 text-center mx-2 my-2'>current stock is <div className='text-black'>{Math.sign(props.stock.highestDiffPercentage)===-1?(props.stock.highestDiffPercentage.toFixed(2))*-1:props.stock.highestDiffPercentage.toFixed(2)}%  {Math.sign(props.stock.highestDiffPercentage)===-1?"up":Math.sign(props.stock.highestDiffPercentage)===0?"same":"down"} </div> {Math.sign(props.stock.highestDiffPercentage)===0?"to":"from"} highest price
      </div> 
    </div>
@@ -84,6 +89,11 @@ export const StockCard = (props) => {
 
     <div className='text-base  text-gray-200 text-left m-2 '>csg3:
        <div className=' text-black   '>{props.stock.csg3}%
+       </div>
+    </div>
+
+    <div className='text-base  text-gray-200 text-center m-2 '>ttm(csg):
+       <div className=' text-black   '>{props.stock.sttm}%
        </div>
     </div>
 
