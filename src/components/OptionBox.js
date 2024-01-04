@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useDispatch } from 'react-redux'
 import { getStocks } from '../store/StocksSlice'
 import {useSelector} from "react-redux"
@@ -10,12 +10,13 @@ export const OptionBox = (props) => {
     const keyVal= useSelector(state=>state.options)
 
 
-    // const [keyVal,setKeyVal]=useState("")
 
     function clickfunc(){
         dispatch(add(props.indexVal))
-        if(props.name==="pricediff"){
+        if(props.name==="price"){
             dispatch(getStocks("highestDiffPercentage"))
+        }else if(props.name==="growth"){
+            dispatch(getStocks("growthrate"))
         }
         else{
             dispatch(getStocks(props.name))

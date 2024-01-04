@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import 'firebase/firestore'
 import { StockCard } from './StockCard'
-import StockService from '../services/StockService'
 import { Options } from './Options'
 import {useDispatch} from "react-redux"
 import {useSelector} from "react-redux"
@@ -14,13 +13,7 @@ export const StocksList = () => {
   const dispatch= useDispatch()
   const data= useSelector(state=>state.stocks)
   const stocks = data["data"]
-    // const [stocks,setStocks]=useState([])
-  
-
-    // const getStocks=async()=>{
-    //     const data = await StockService.getAllStock()
-    //     setStocks(data.docs.map((doc)=>({...doc.data(),id:doc.id})))
-    // }
+ 
 
     useEffect(()=>{
         dispatch(getStocks("index"))

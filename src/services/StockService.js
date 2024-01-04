@@ -5,8 +5,13 @@ const ref= collection(db,"stocks")
 class StockService{
 
     getAllStock=(val)=>{
+        if(val==="index"){
+            return getDocs(query(ref, orderBy(val)))
+        }else{
+            return getDocs(query(ref, orderBy(val,"desc")))
+        }
 
-        return getDocs(query(ref, orderBy(val,"desc")))
+       
     }
 
     getOneStock=(id)=>{
