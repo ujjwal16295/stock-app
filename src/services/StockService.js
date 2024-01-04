@@ -4,9 +4,9 @@ import { collection,getDocs,getDoc, doc ,orderBy,query} from "firebase/firestore
 const ref= collection(db,"stocks")
 class StockService{
 
-    getAllStock=()=>{
+    getAllStock=(val)=>{
 
-        return getDocs(query(ref, orderBy('index')))
+        return getDocs(query(ref, orderBy(val,"desc")))
     }
 
     getOneStock=(id)=>{
