@@ -46,7 +46,7 @@ export const StockCard = (props) => {
        </div>
     </div>
 
-    <div className='text-base  text-gray-200 text-center m-2 '>ttm(cp):
+    <div className='text-base  text-gray-200 text-center m-2 col-span-3'>ttm(cp):
        <div className=' text-black   '>{props.stock.pttm}%
        </div>
     </div>
@@ -92,7 +92,7 @@ export const StockCard = (props) => {
        </div>
     </div>
 
-    <div className='text-base  text-gray-200 text-center m-2 '>ttm(csg):
+    <div className='text-base  text-gray-200 text-center m-2 col-span-3 '>ttm(csg):
        <div className=' text-black   '>{props.stock.sttm}%
        </div>
     </div>
