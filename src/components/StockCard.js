@@ -52,7 +52,7 @@ export const StockCard = (props) => {
    <ReactCardFlip isFlipped={flip}
    flipDirection="horizontal">
    <div>
-   <div className='hover:scale-110 m-4'>
+   <div className='hover:scale-110 m-4 p-2'>
    <div className='text-right z-10 absolute right-0 top-0 border-white border-2 rounded-lg bg-white p-3 hover:motion-safe:animate-bounce ' onClick={()=>{addStockToCart(props.stock)}}>
    {props.cardsign==="plus"?
    <FontAwesomeIcon icon={solid("plus")} />:
@@ -60,7 +60,7 @@ export const StockCard = (props) => {
    </div>
    <div  className='shadow-md shadow-blue-300 hover:shadow-xl hover:shadow-yellow-300 '>
    
-   <div onClick={() => setFlip(!flip)} className={`  rounded-lg border-2 border-black grid gap-6 grid-cols-3  ${props.stock.buyOrNot==="buy"?"bg-green-400":"bg-red-400"} `}  >
+   <div onClick={() => setFlip(!flip)} className={`  rounded-lg border-2 border-black grid gap-6 grid-cols-3  ${props.stock.buyOrNot==="buy"?"bg-green-400":"bg-red-400"} p-4`}  >
    
    <div className='text-3xl  text-white col-span-3 text-left mx-2 my-2'>{props.stock.index}: {props.stock.name}
     </div>
@@ -109,14 +109,14 @@ export const StockCard = (props) => {
    </div>
    </div>
   <div>
-   <div className='hover:scale-110 m-4'>
+   <div className='hover:scale-110 m-4 p-2'>
    <div className='text-right z-10 absolute right-0 top-0 border-white border-2 rounded-lg bg-white p-3 hover:motion-safe:animate-bounce ' onClick={()=>{addStockToCart(props.stock)}}>
    {props.cardsign==="plus"?
    <FontAwesomeIcon icon={solid("plus")} />:
    <FontAwesomeIcon icon={solid("minus")} />}
    </div>
    <div  className='shadow-md shadow-blue-300 hover:shadow-xl hover:shadow-yellow-300'>
-   <div onClick={() => setFlip(!flip)} className={`  rounded-lg border-2 border-black grid gap-6 grid-cols-3  ${props.stock.buyOrNot==="buy"?"bg-green-400":"bg-red-400"}`}  >
+   <div onClick={() => setFlip(!flip)} className={`  rounded-lg border-2 border-black grid gap-6 grid-cols-3  ${props.stock.buyOrNot==="buy"?"bg-green-400":"bg-red-400"} p-4` }  >
    
    <div className={`text-3xl   col-span-3 text-left mx-2 ${props.stock.growthPeriod.startyear===0?"text-red-800":"text-green-800"}`}>{`${props.stock.growthPeriod.startyear===0 ? "Doesn't have a growth rate":` ${props.stock.growthPeriod.startyear} to ${props.stock.growthPeriod.endyear} by ${props.stock.growthPeriod.growth.toFixed(0)}%`}`}
     </div>
