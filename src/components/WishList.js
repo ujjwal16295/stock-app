@@ -1,30 +1,20 @@
-import React, { useEffect, useState } from 'react'
-import 'firebase/firestore'
-import { StockCard } from './StockCard'
-import { Options } from './Options'
-import {useDispatch} from "react-redux"
-import {useSelector} from "react-redux"
-import { getStocks } from '../store/StocksSlice'
+import React, { useEffect } from 'react'
 import { getStocksForCart } from '../store/CartSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { Options } from './Options'
+import { StockCard } from './StockCard'
 import { ToastContainer, toast } from 'react-toastify';
 
 
 
-
-
-export const StocksList = () => {
-  const dispatch= useDispatch()
-  const data= useSelector(state=>state.stocks)
+export const WishList = () => {
+    const dispatch= useDispatch()
+  const data= useSelector(state=>state.cart)
   const stocks = data["data"]
-  const [check,setCheck]=useState(0)
  
 
     useEffect(()=>{
-      if(check===0){
-      dispatch(getStocksForCart("index"))
-      }
-        setCheck(1)
-        dispatch(getStocks("index"))
+        dispatch(getStocksForCart("index"))
         console.log(stocks)
     },[])
 
@@ -36,20 +26,22 @@ if(data["status"]==="loading"){
 if(data["status"]==="error"){
   return <div className='h-screen flex items-center justify-center  '><div className='text-4xl'>server error please try again later</div></div>
 }
-
-  
-
   return (
+    <div>
     <div>
      <div className='flex items-center justify-center my-4'> 
      <div  className='text-3xl'>
-     Nifty 100
+     WishList : {stocks.length}
 
      </div>
      </div>
      <div className='my-2 mx-16'>
 
       <Options/>
+     </div>
+     <div>
+      {stocks.length===0?<div className='h-screen flex items-center justify-center  '><div className='text-4xl'>no wishlist</div></div>:null}
+
      </div>
     <div  className={`grid lg:grid-cols-3  gap-20 my-16 mx-16 md:grid-cols-2 sm:grid-cols-1`}>
 
@@ -59,11 +51,13 @@ if(data["status"]==="error"){
      
         return(
            
-        <StockCard key={doc.id}  stock={doc} cardsign="plus" keyVal={doc.id} />
+        <StockCard key={doc.id}  stock={doc} cardsign="minus" keyVal={doc.id}/>
         )
      })}
 
     </div>
+    </div>
+
 
     </div>
   )

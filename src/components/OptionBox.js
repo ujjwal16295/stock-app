@@ -3,24 +3,36 @@ import { useDispatch } from 'react-redux'
 import { getStocks } from '../store/StocksSlice'
 import {useSelector} from "react-redux"
 import { add } from '../store/OptionSlice'
+import { getStocksForCart } from '../store/CartSlice'
 
 
 export const OptionBox = (props) => {
     const dispatch= useDispatch()
     const keyVal= useSelector(state=>state.options)
-
+    
 
 
     function clickfunc(){
+        const pathname = window.location.pathname;
         dispatch(add(props.indexVal))
-        if(props.name==="price"){
+        if(pathname==="/wishlist"){
+            if(props.name==="price"){
+                dispatch(getStocksForCart("highestDiffPercentage"))
+            }else if(props.name==="growth"){
+                dispatch(getStocksForCart("growthrate"))
+            }
+            else{
+                dispatch(getStocksForCart(props.name))
+            }
+        }else{ if(props.name==="price"){
             dispatch(getStocks("highestDiffPercentage"))
         }else if(props.name==="growth"){
             dispatch(getStocks("growthrate"))
         }
         else{
             dispatch(getStocks(props.name))
-        }
+        }}
+       
     }
 
   return (

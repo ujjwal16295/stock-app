@@ -1,20 +1,71 @@
 import React, { useState } from 'react'
 import ReactCardFlip from "react-card-flip";
+import { useDispatch } from 'react-redux';
+import { addToCart, deleteFromCart, getStocksForCart } from '../store/CartSlice';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 
 export const StockCard = (props) => {
+   const dispatch= useDispatch()
 
    const [flip, setFlip] = useState(false);
 
+   function addStockToCart(val){
+     if(props.cardsign==="plus"){
+      dispatch(addToCart(val))
+      dispatch(getStocksForCart("index"))
+      toast.success(`${props.stock.name} stock added to wishlist`, {
+         position: "bottom-center",
+         autoClose: 2000,
+         hideProgressBar: false,
+         closeOnClick: true,
+         pauseOnHover: false,
+         draggable: true,
+         progress: undefined,
+         theme: "dark",
+         })
+
+
+     }else{
+      toast.success(`${props.stock.name} stock deleted from wishlist`, {
+         position: "bottom-center",
+         autoClose: 2000,
+         hideProgressBar: false,
+         closeOnClick: true,
+         pauseOnHover: false,
+         draggable: true,
+         progress: undefined,
+         theme: "dark",
+         })
+      dispatch(deleteFromCart(props.keyVal))
+      dispatch(getStocksForCart("index"))
+
+     }
+   }
 
 
   return (
    <ReactCardFlip isFlipped={flip}
    flipDirection="horizontal">
-   <div className='shadow-md shadow-blue-300 hover:shadow-xl hover:shadow-yellow-300'>
-   <div onClick={() => setFlip(!flip)} className={`  rounded-lg border-2 border-black grid gap-6 grid-cols-3  ${props.stock.buyOrNot==="buy"?"bg-green-400":"bg-red-400"} hover:scale-110`}  >
+   <div>
+   <div className='hover:scale-110 m-4'>
+   <div className='text-right z-10 absolute right-0 top-0 border-white border-2 rounded-lg bg-white p-3 hover:motion-safe:animate-bounce ' onClick={()=>{addStockToCart(props.stock)}}>
+   {props.cardsign==="plus"?
+   <FontAwesomeIcon icon={solid("plus")} />:
+   <FontAwesomeIcon icon={solid("minus")} />}
+   </div>
+   <div  className='shadow-md shadow-blue-300 hover:shadow-xl hover:shadow-yellow-300 '>
+   
+   <div onClick={() => setFlip(!flip)} className={`  rounded-lg border-2 border-black grid gap-6 grid-cols-3  ${props.stock.buyOrNot==="buy"?"bg-green-400":"bg-red-400"} `}  >
    
    <div className='text-3xl  text-white col-span-3 text-left mx-2 my-2'>{props.stock.index}: {props.stock.name}
     </div>
+
+    
 
     <div className=' text-gray-200 text-left m-2 text-base'>Price:
        <div className='text-black'>Rs.{props.stock.currentPrice}
@@ -55,9 +106,17 @@ export const StockCard = (props) => {
      </div> 
    </div>
    </div>
-
-   <div className='shadow-md shadow-blue-300 hover:shadow-xl hover:shadow-yellow-300'>
-   <div onClick={() => setFlip(!flip)} className={`  rounded-lg border-2 border-black grid gap-6 grid-cols-3  ${props.stock.buyOrNot==="buy"?"bg-green-400":"bg-red-400"} hover:scale-110`}  >
+   </div>
+   </div>
+  <div>
+   <div className='hover:scale-110 m-4'>
+   <div className='text-right z-10 absolute right-0 top-0 border-white border-2 rounded-lg bg-white p-3 hover:motion-safe:animate-bounce ' onClick={()=>{addStockToCart(props.stock)}}>
+   {props.cardsign==="plus"?
+   <FontAwesomeIcon icon={solid("plus")} />:
+   <FontAwesomeIcon icon={solid("minus")} />}
+   </div>
+   <div  className='shadow-md shadow-blue-300 hover:shadow-xl hover:shadow-yellow-300'>
+   <div onClick={() => setFlip(!flip)} className={`  rounded-lg border-2 border-black grid gap-6 grid-cols-3  ${props.stock.buyOrNot==="buy"?"bg-green-400":"bg-red-400"}`}  >
    
    <div className={`text-3xl   col-span-3 text-left mx-2 ${props.stock.growthPeriod.startyear===0?"text-red-800":"text-green-800"}`}>{`${props.stock.growthPeriod.startyear===0 ? "Doesn't have a growth rate":` ${props.stock.growthPeriod.startyear} to ${props.stock.growthPeriod.endyear} by ${props.stock.growthPeriod.growth.toFixed(0)}%`}`}
     </div>
@@ -102,6 +161,8 @@ export const StockCard = (props) => {
 
     
       
+   </div>
+   </div>
    </div>
    </div>
 </ReactCardFlip>

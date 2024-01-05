@@ -1,12 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import StocksSlice from "./StocksSlice";
 import OptionSlice from "./OptionSlice";
+import CartSlice from "./CartSlice";
 
 
 const Store=configureStore({
     reducer:({
         stocks:StocksSlice,
-        options:OptionSlice
+        options:OptionSlice,
+        cart:CartSlice
     })
 })
 
