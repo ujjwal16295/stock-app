@@ -19,7 +19,7 @@ export const StockCard = (props) => {
    function addStockToCart(val,email){
      if(props.cardsign==="plus"){
       dispatch(addToCart([val,email]))
-      dispatch(getStocksForCart(["index",email]))
+      dispatch(getStocksForCart("index",email))
       toast.success(`${props.stock.name} stock added to wishlist`, {
          position: "bottom-center",
          autoClose: 2000,
@@ -44,7 +44,7 @@ export const StockCard = (props) => {
          theme: "dark",
          })
       dispatch(deleteFromCart([props.keyVal,email]))
-      dispatch(getStocksForCart(["index",email]))
+      dispatch(getStocksForCart("index",email))
 
      }
    }

@@ -18,12 +18,12 @@ export const OptionBox = (props) => {
         dispatch(add(props.indexVal))
         if(pathname==="/wishlist"){
             if(props.name==="price"){
-                dispatch(getStocksForCart(["highestDiffPercentage",email]))
+                dispatch(getStocksForCart("highestDiffPercentage",email))
             }else if(props.name==="growth"){
-                dispatch(getStocksForCart(["growthrate",email]))
+                dispatch(getStocksForCart("growthrate",email))
             }
             else{
-                dispatch(getStocksForCart([props.name,email]))
+                dispatch(getStocksForCart(props.name,email))
             }
         }else{ if(props.name==="price"){
             dispatch(getStocks("highestDiffPercentage"))
