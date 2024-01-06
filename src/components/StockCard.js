@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
+
 
 
 
@@ -14,23 +16,31 @@ export const StockCard = (props) => {
 
    const [flip, setFlip] = useState(false);
    const email = useSelector(state=>state.user)
+   const navigate = useNavigate();
+
 
 
    function addStockToCart(val,email){
      if(props.cardsign==="plus"){
-      dispatch(addToCart([val,email]))
-      dispatch(getStocksForCart(["index",email]))
-      toast.success(`${props.stock.name} stock added to wishlist`, {
-         position: "bottom-center",
-         autoClose: 2000,
-         hideProgressBar: false,
-         closeOnClick: true,
-         pauseOnHover: false,
-         draggable: true,
-         progress: undefined,
-         theme: "dark",
-         })
+      if(email){
 
+         dispatch(addToCart([val,email]))
+         dispatch(getStocksForCart(["index",email]))
+         toast.success(`${props.stock.name} stock added to wishlist`, {
+            position: "bottom-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            })
+   
+      }else{
+         navigate("/login")
+      }
+     
 
      }else{
       toast.success(`${props.stock.name} stock deleted from wishlist`, {
