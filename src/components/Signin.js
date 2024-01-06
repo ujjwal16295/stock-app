@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addEmail } from '../store/UserSlice'
 import { redirect, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { Spinner } from './Spinner'
 
 
 export const Signin = () => {
@@ -15,7 +16,9 @@ export const Signin = () => {
 
     const [email,setEmail]=useState("")
     const [password,setPassword]=useState("")
+    const [loader,setLoader]=useState(false)
     function Signin(e){
+      setLoader(true)
        e.preventDefault()
        createUserWithEmailAndPassword(auth,email,password)
        .then((usercredential)=>{
@@ -46,6 +49,7 @@ export const Signin = () => {
             })
          console.log(error)
        })
+       setLoader(true)
     }
   return (
     <div>
@@ -80,9 +84,10 @@ export const Signin = () => {
       <input class="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************"value={password} onChange={(e)=>{setPassword(e.target.value)}}/>
     </div>
     <div class="flex items-center justify-center">
-      <button class=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+    {loader===true?<Spinner loading={loader}/>:<button class=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
         signin
-      </button>
+      </button>}
+      
     
     </div>
   </form>
