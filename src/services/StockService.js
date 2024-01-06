@@ -27,6 +27,7 @@ class StockService{
 
     getAllStockForCart=(val,cartname)=>{
         const refForCart= collection(db,`${cartname}Cart`)
+       
 
         if(val==="index"){
             return getDocs(query(refForCart, orderBy(val)))

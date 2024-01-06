@@ -37,8 +37,9 @@ const CartSlice=createSlice({
 export default CartSlice.reducer;
 export const {addToCart,deleteFromCart} =CartSlice.actions;
 
-export const getStocksForCart=createAsyncThunk("carts/get",async(val,cartname)=>{
-    const data = await StockService.getAllStockForCart(val,cartname)
+export const getStocksForCart=createAsyncThunk("carts/get",async(value)=>{
+
+    const data = await StockService.getAllStockForCart(value[0],value[1])
     const result= data.docs.map((doc)=>({...doc.data(),id:doc.id}))
     return result
 })

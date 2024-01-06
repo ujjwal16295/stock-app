@@ -16,7 +16,8 @@ export const WishList = () => {
  
 
     useEffect(()=>{
-        dispatch(getStocksForCart("index",email[0]))
+       console.log(email[0])
+        dispatch(getStocksForCart(["index",email[0]]))
         console.log(stocks)
     },[])
 

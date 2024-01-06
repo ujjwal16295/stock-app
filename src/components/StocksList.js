@@ -23,7 +23,7 @@ export const StocksList = () => {
 
     useEffect(()=>{
       if(check===0){
-      dispatch(getStocksForCart("index",email[0]))
+      dispatch(getStocksForCart(["index",email[0]]))
       }
         setCheck(1)
         dispatch(getStocks("index"))

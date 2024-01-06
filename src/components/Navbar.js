@@ -10,7 +10,7 @@ export const Navbar = () => {
     <div className='flex items-center justify-between bg-slate-700 p-8 shadow-md shadow-black'>
      <Link to={email.length===1?`/wishlist`:`/login`}  className=' invisible border-solid border-2 p-1 rounded-md hover:scale-110 text-white hover:bg-white hover:text-black sm:p-1 md:p-4 lg:p-4 '>
       <div className=' text-base sm:text-base md:text-xl lg:text-xl  '>
-      {email.length===1?"Login":`wishlist : ${stocks.length}`}
+      {email.length===1?`wishlist : ${stocks.length}`:` Login`}
     </div>
 </Link>
 

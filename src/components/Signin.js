@@ -3,13 +3,15 @@ import React, { useState } from 'react'
 import { auth } from '../services/FirebaseConfig'
 import { useDispatch, useSelector } from 'react-redux'
 import { addEmail } from '../store/UserSlice'
-import { redirect } from 'react-router-dom'
+import { redirect, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 
 export const Signin = () => {
     const dispatch= useDispatch()
     const emailCheck = useSelector(state=>state.user)
+    const navigate = useNavigate();
+
 
     const [email,setEmail]=useState("")
     const [password,setPassword]=useState("")
@@ -29,7 +31,7 @@ export const Signin = () => {
             progress: undefined,
             theme: "dark",
             })
-         redirect("/wishlist")
+         navigate("/wishlist")
        })
        .catch((error)=>{
         toast.error("sign in unsuccessful", {
@@ -63,7 +65,7 @@ export const Signin = () => {
   
      </div>
      <div className='flex items-center justify-center m-16 p-8'>
-     <div class="w-full max-w-xs p-4">
+     <div class="w-full  p-4">
   <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={Signin}>
     <div class="mb-4">
       <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
