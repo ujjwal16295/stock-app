@@ -26,7 +26,7 @@ export const StocksList = () => {
       dispatch(getStocksForCart(["index",email[0]]))
       }
         setCheck(1)
-        dispatch(getStocks(["index",email[0]]))
+        dispatch(getStocks("index"))
         console.log(stocks)
     },[])
 
