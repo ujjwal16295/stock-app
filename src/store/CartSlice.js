@@ -12,10 +12,10 @@ const CartSlice=createSlice({
     initialState,
     reducers:{
         addToCart(state,action){
-            StockService.addStock(action.payload)
+            StockService.addStock(action.payload[0],action.payload[1])
         },
         deleteFromCart(state,action){
-            StockService.deleteStockFromCart(action.payload)
+            StockService.deleteStockFromCart(action.payload[0],action.payload[1])
         },
     },
     extraReducers:(builder)=>{
@@ -37,8 +37,8 @@ const CartSlice=createSlice({
 export default CartSlice.reducer;
 export const {addToCart,deleteFromCart} =CartSlice.actions;
 
-export const getStocksForCart=createAsyncThunk("carts/get",async(val)=>{
-    const data = await StockService.getAllStockForCart(val)
+export const getStocksForCart=createAsyncThunk("carts/get",async(val,cartname)=>{
+    const data = await StockService.getAllStockForCart(val,cartname)
     const result= data.docs.map((doc)=>({...doc.data(),id:doc.id}))
     return result
 })

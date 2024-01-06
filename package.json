@@ -51,10 +51,9 @@
   "devDependencies": {
     "tailwindcss": "^3.4.0"
   },
-  "babelMacros" : {
-    "fontawesome-svg-core" : {
+  "babelMacros": {
+    "fontawesome-svg-core": {
       "license": "free"
     }
   }
-
 }

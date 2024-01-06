@@ -15,16 +15,18 @@ import { ToastContainer, toast } from 'react-toastify';
 export const StocksList = () => {
   const dispatch= useDispatch()
   const data= useSelector(state=>state.stocks)
+  const email = useSelector(state=>state.user)
+
   const stocks = data["data"]
   const [check,setCheck]=useState(0)
  
 
     useEffect(()=>{
       if(check===0){
-      dispatch(getStocksForCart("index"))
+      dispatch(getStocksForCart(["index",email[0]]))
       }
         setCheck(1)
-        dispatch(getStocks("index"))
+        dispatch(getStocks(["index",email[0]]))
         console.log(stocks)
     },[])
 

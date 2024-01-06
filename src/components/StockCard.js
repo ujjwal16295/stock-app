@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import ReactCardFlip from "react-card-flip";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, deleteFromCart, getStocksForCart } from '../store/CartSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
@@ -13,11 +13,13 @@ export const StockCard = (props) => {
    const dispatch= useDispatch()
 
    const [flip, setFlip] = useState(false);
+   const email = useSelector(state=>state.user)
 
-   function addStockToCart(val){
+
+   function addStockToCart(val,email){
      if(props.cardsign==="plus"){
-      dispatch(addToCart(val))
-      dispatch(getStocksForCart("index"))
+      dispatch(addToCart([val,email]))
+      dispatch(getStocksForCart(["index",email]))
       toast.success(`${props.stock.name} stock added to wishlist`, {
          position: "bottom-center",
          autoClose: 2000,
@@ -41,8 +43,8 @@ export const StockCard = (props) => {
          progress: undefined,
          theme: "dark",
          })
-      dispatch(deleteFromCart(props.keyVal))
-      dispatch(getStocksForCart("index"))
+      dispatch(deleteFromCart([props.keyVal,email]))
+      dispatch(getStocksForCart(["index",email]))
 
      }
    }
@@ -53,7 +55,7 @@ export const StockCard = (props) => {
    flipDirection="horizontal">
    <div>
    <div className='hover:scale-110 m-4 p-2'>
-   <div className='text-right z-10 absolute right-0 top-0 border-white border-2 rounded-lg bg-white p-3 hover:motion-safe:animate-bounce ' onClick={()=>{addStockToCart(props.stock)}}>
+   <div className='text-right z-10 absolute right-0 top-0 border-white border-2 rounded-lg bg-white p-3 hover:motion-safe:animate-bounce ' onClick={()=>{addStockToCart(props.stock,email[0])}}>
    {props.cardsign==="plus"?
    <FontAwesomeIcon icon={solid("plus")} />:
    <FontAwesomeIcon icon={solid("minus")} />}
@@ -110,7 +112,7 @@ export const StockCard = (props) => {
    </div>
   <div>
    <div className='hover:scale-110 m-4 p-2'>
-   <div className='text-right z-10 absolute right-0 top-0 border-white border-2 rounded-lg bg-white p-3 hover:motion-safe:animate-bounce ' onClick={()=>{addStockToCart(props.stock)}}>
+   <div className='text-right z-10 absolute right-0 top-0 border-white border-2 rounded-lg bg-white p-3 hover:motion-safe:animate-bounce ' onClick={()=>{addStockToCart(props.stock,email[0])}}>
    {props.cardsign==="plus"?
    <FontAwesomeIcon icon={solid("plus")} />:
    <FontAwesomeIcon icon={solid("minus")} />}

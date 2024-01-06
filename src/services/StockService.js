@@ -2,10 +2,11 @@ import { db } from "./FirebaseConfig";
 import { collection,getDocs,getDoc, doc ,orderBy,query,addDoc, deleteDoc} from "firebase/firestore";
 
 const ref= collection(db,"stocks")
-const refForCart= collection(db,"Cart")
 class StockService{
 
-    addStock=(stock)=>{
+    addStock=(stock,cartname)=>{
+        const refForCart= collection(db,`${cartname}Cart`)
+
          addDoc(refForCart,stock)
     }
 
@@ -24,7 +25,9 @@ class StockService{
         return getDoc(stockDoc)
     }
 
-    getAllStockForCart=(val)=>{
+    getAllStockForCart=(val,cartname)=>{
+        const refForCart= collection(db,`${cartname}Cart`)
+
         if(val==="index"){
             return getDocs(query(refForCart, orderBy(val)))
         }else{
@@ -33,8 +36,8 @@ class StockService{
 
        
     }
-    deleteStockFromCart=(id)=>{
-        const stockToDelete=doc(db,"Cart",id)
+    deleteStockFromCart=(id,cartname)=>{
+        const stockToDelete=doc(db,`${cartname}Cart`,id)
         deleteDoc(stockToDelete)
     }
 

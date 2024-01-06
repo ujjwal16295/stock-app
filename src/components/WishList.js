@@ -10,11 +10,13 @@ import { ToastContainer, toast } from 'react-toastify';
 export const WishList = () => {
     const dispatch= useDispatch()
   const data= useSelector(state=>state.cart)
+  const email = useSelector(state=>state.user)
+
   const stocks = data["data"]
  
 
     useEffect(()=>{
-        dispatch(getStocksForCart("index"))
+        dispatch(getStocksForCart(["index",email[0]]))
         console.log(stocks)
     },[])
 
