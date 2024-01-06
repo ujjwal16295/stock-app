@@ -70,9 +70,9 @@ export const Login = () => {
 
   
      </div>
-     <div className='flex items-center justify-center m-16 p-8'>
-     <div class="w-full  p-4">
-  <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={Login}>
+     <div className='flex items-center justify-center m-4 p-8'>
+     <div class="w-full ">
+  <form class="bg-white shadow-md rounded p-8 sm:p-20 mb-4 py-8" onSubmit={Login}>
     <div class="mb-4">
       <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
         Email

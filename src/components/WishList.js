@@ -46,7 +46,7 @@ if(data["status"]==="error"){
       {stocks.length===0?<div className='h-screen flex items-center justify-center  '><div className='text-4xl'>no wishlist</div></div>:null}
 
      </div>
-    <div  className={`grid lg:grid-cols-3  gap-20 my-16 mx-16 md:grid-cols-2 sm:grid-cols-1`}>
+    <div  className={`grid lg:grid-cols-3  gap-10 my-16 mx-8 md:grid-cols-2 sm:grid-cols-1`}>
 
      {stocks.map((doc,index)=>{
 
