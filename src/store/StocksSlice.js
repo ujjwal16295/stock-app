@@ -27,7 +27,7 @@ const StocksSlice=createSlice({
 
 export default StocksSlice.reducer;
 export const getStocks=createAsyncThunk("products/get",async(val)=>{
-    const data = await StockService.getAllStock(val)
+    const data = await StockService.getAllStock(val[0],val[1])
     const result= data.docs.map((doc)=>({...doc.data(),id:doc.id}))
     return result
 })

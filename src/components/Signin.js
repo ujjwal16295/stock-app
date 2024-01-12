@@ -16,7 +16,7 @@ export const Signin = () => {
 
     const [email,setEmail]=useState("")
     const [password,setPassword]=useState("")
-    const [loader,setLoader]=useState(false)
+    const [loader,setLoader]=useState("")
     function Signin(e){
       setLoader(true)
        e.preventDefault()
@@ -34,9 +34,13 @@ export const Signin = () => {
             progress: undefined,
             theme: "dark",
             })
+            setLoader(false)
+
          navigate("/wishlist")
        })
        .catch((error)=>{
+        setLoader(false)
+
         toast.error("sign in unsuccessful", {
             position: "bottom-center",
             autoClose: 2000,
@@ -49,7 +53,6 @@ export const Signin = () => {
             })
          console.log(error)
        })
-       setLoader(true)
     }
   return (
     <div>

@@ -12,7 +12,7 @@ export const Login = () => {
     const dispatch= useDispatch()
     const [password,setPassword]=useState("")
     const emailCheck = useSelector(state=>state.user)
-    const [loader,setLoader]=useState(false)
+    const [loader,setLoader]=useState("")
 
     const navigate = useNavigate();
 
@@ -34,11 +34,14 @@ export const Login = () => {
             progress: undefined,
             theme: "dark",
             })
+        setLoader(false)
         navigate("/wishlist")
 
 
        })
        .catch((error)=>{
+  
+        setLoader(false)
         toast.error("log in unsuccessful", {
             position: "bottom-center",
             autoClose: 2000,
@@ -50,9 +53,8 @@ export const Login = () => {
             theme: "dark",
             })
         console.log(error)
-    
+
        })
-       setLoader(true)
     }
   return (
     

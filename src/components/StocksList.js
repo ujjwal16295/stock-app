@@ -7,6 +7,7 @@ import {useSelector} from "react-redux"
 import { getStocks } from '../store/StocksSlice'
 import { getStocksForCart } from '../store/CartSlice'
 import { ToastContainer, toast } from 'react-toastify';
+import Select from 'react-select';
 
 
 
@@ -19,6 +20,14 @@ export const StocksList = () => {
 
   const stocks = data["data"]
   const [check,setCheck]=useState(0)
+  const options=[
+    {value:"stocks",label:"Nifty 100"},
+    {value:"stocksMidCAP",label:"Nifty MidCap"},
+    {value:"stocksSmallCAP",label:"Nifty SmallCap"}
+
+  ]
+  
+  const [dropdownVal,setDropdownVal]=useState(options[0])
  
 
     useEffect(()=>{
@@ -26,10 +35,10 @@ export const StocksList = () => {
       dispatch(getStocksForCart(["index",email[0]]))
       }
         setCheck(1)
-        dispatch(getStocks("index"))
+        dispatch(getStocks(["index",dropdownVal.value]))
         console.log(stocks)
     },[])
-
+    useEffect(()=>{ dispatch(getStocks(["index",dropdownVal.value]))},[dropdownVal])
 
 if(data["status"]==="loading"){
   return <div className='h-screen flex items-center justify-center  '><div className='text-4xl'>stocks loading</div></div>
@@ -39,19 +48,18 @@ if(data["status"]==="error"){
   return <div className='h-screen flex items-center justify-center  '><div className='text-4xl'>server error please try again later</div></div>
 }
 
-  
 
   return (
     <div>
      <div className='flex items-center justify-center my-4'> 
      <div  className='text-3xl'>
-     Nifty 100
-
+     {/* Nifty 100 */}
+     <Select options={options} defaultValue={dropdownVal} placeholder="select index" onChange={setDropdownVal}  />
      </div>
      </div>
      <div className='my-2 mx-16'>
 
-      <Options/>
+      <Options dropdown={dropdownVal.value}/>
      </div>
     <div  className={`grid lg:grid-cols-3  gap-10 my-16 mx-8 md:grid-cols-2 sm:grid-cols-1`}>
 

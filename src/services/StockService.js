@@ -10,11 +10,13 @@ class StockService{
          addDoc(refForCart,stock)
     }
 
-    getAllStock=(val)=>{
+    getAllStock=(val,dbRef)=>{
+        const refForcart= collection(db,dbRef)
+
         if(val==="index"){
-            return getDocs(query(ref, orderBy(val)))
+            return getDocs(query(refForcart, orderBy(val)))
         }else{
-            return getDocs(query(ref, orderBy(val,"desc")))
+            return getDocs(query(refForcart, orderBy(val,"desc")))
         }
 
        

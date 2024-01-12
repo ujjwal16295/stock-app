@@ -26,12 +26,12 @@ export const OptionBox = (props) => {
                 dispatch(getStocksForCart([props.name,email]))
             }
         }else{ if(props.name==="price"){
-            dispatch(getStocks("highestDiffPercentage"))
+            dispatch(getStocks(["highestDiffPercentage",props.dropdown]))
         }else if(props.name==="growth"){
-            dispatch(getStocks("growthrate"))
+            dispatch(getStocks(["growthrate",props.dropdown]))
         }
         else{
-            dispatch(getStocks(props.name))
+            dispatch(getStocks([props.name,props.dropdown]))
         }}
        
     }
