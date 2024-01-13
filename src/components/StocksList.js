@@ -29,6 +29,7 @@ export const StocksList = () => {
   
   const [dropdownVal,setDropdownVal]=useState(options[0])
  
+  const [inputVal,setinputVal]=useState("")
 
     useEffect(()=>{
       if(check===0){
@@ -38,7 +39,11 @@ export const StocksList = () => {
         dispatch(getStocks(["index",dropdownVal.value]))
         console.log(stocks)
     },[])
-    useEffect(()=>{ dispatch(getStocks(["index",dropdownVal.value]))},[dropdownVal])
+    useEffect(()=>{ dispatch(getStocks(["index",dropdownVal.value])) },[dropdownVal])
+
+    useEffect(()=>{ setinputVal("") },[dropdownVal])
+
+    // useEffect(()=>{},[inputVal])
 
 if(data["status"]==="loading"){
   return <div className='h-screen flex items-center justify-center  '><div className='text-4xl'>stocks loading</div></div>
@@ -47,6 +52,8 @@ if(data["status"]==="loading"){
 if(data["status"]==="error"){
   return <div className='h-screen flex items-center justify-center  '><div className='text-4xl'>server error please try again later</div></div>
 }
+
+
 
 
   return (
@@ -61,9 +68,19 @@ if(data["status"]==="error"){
 
       <Options dropdown={dropdownVal.value}/>
      </div>
+     <div className='flex items-center justify-center mx-4 '> 
+
+     <input class="shadow appearance-none border mt-7   rounded  py-2 px-3 text-gray-700  leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="stock name"value={inputVal} onChange={(e)=>{setinputVal(e.target.value)}}/>
+   </div>
     <div  className={`grid lg:grid-cols-3  gap-10 my-16 mx-8 md:grid-cols-2 sm:grid-cols-1`}>
 
-     {stocks.map((doc,index)=>{
+     {stocks.filter(item=>{
+
+const searchItem= inputVal.toLowerCase()
+const stockname=item.name.toLowerCase()
+
+return  stockname.startsWith(searchItem)
+}).map((doc,index)=>{
 
     
      
