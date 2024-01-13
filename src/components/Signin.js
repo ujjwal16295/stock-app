@@ -55,7 +55,7 @@ export const Signin = () => {
        })
     }
   return (
-    <div>
+    <div className='mt-32 md:mt-40'>
     {emailCheck.length===1? <div className='flex items-center justify-center my-4'> 
      <div  className='text-3xl'>
      Logged in as {emailCheck[0]}

@@ -31,7 +31,7 @@ if(data["status"]==="error"){
   return <div className='h-screen flex items-center justify-center  '><div className='text-4xl'>server error please try again later</div></div>
 }
   return (
-    <div>
+    <div className='mt-32 md:mt-40'>
     <div>
      <div className='flex items-center justify-center my-4'> 
      <div  className='text-3xl'>
