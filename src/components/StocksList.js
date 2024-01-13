@@ -64,7 +64,7 @@ if(data["status"]==="error"){
      <Select options={options} defaultValue={dropdownVal} placeholder="select index" onChange={setDropdownVal}  />
      </div>
      </div>
-     <div className='my-2 mx-16'>
+     <div className='my-2 mx-16 mt-20 md:mt-36'>
 
       <Options dropdown={dropdownVal.value}/>
      </div>
