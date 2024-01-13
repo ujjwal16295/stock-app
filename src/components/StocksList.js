@@ -58,13 +58,13 @@ if(data["status"]==="error"){
 
   return (
     <div>
-     <div className='flex items-center justify-center my-4'> 
+     <div className='flex items-center justify-center my-4 mt-32 md:mt-40'> 
      <div  className='text-3xl'>
      {/* Nifty 100 */}
      <Select options={options} defaultValue={dropdownVal} placeholder="select index" onChange={setDropdownVal}  />
      </div>
      </div>
-     <div className='my-2 mx-16 mt-20 md:mt-36'>
+     <div className='my-2 mx-16 '>
 
       <Options dropdown={dropdownVal.value}/>
      </div>
