@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import ReactCardFlip from "react-card-flip";
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart, deleteFromCart, getStocksForCart } from '../store/CartSlice';
+import { addStockCart, addToCart, deleteFromCart, deleteStockCart, getStocksForCart } from '../store/CartSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { ToastContainer, toast } from 'react-toastify';
@@ -20,11 +20,12 @@ export const StockCard = (props) => {
 
 
 
-   function addStockToCart(val,email){
+   async function addStockToCart(val,email){
      if(props.cardsign==="plus"){
       if(email){
 
-         dispatch(addToCart([val,email]))
+         // dispatch(addToCart([val,email]))
+         dispatch(addStockCart([val,email]))
          dispatch(getStocksForCart(["index",email]))
          toast.success(`${props.stock.name} stock added to wishlist`, {
             position: "bottom-center",
@@ -53,7 +54,8 @@ export const StockCard = (props) => {
          progress: undefined,
          theme: "dark",
          })
-      dispatch(deleteFromCart([props.keyVal,email]))
+      // dispatch(deleteFromCart([props.keyVal,email]))
+      dispatch(deleteStockCart([props.keyVal,email]))
       dispatch(getStocksForCart(["index",email]))
 
      }

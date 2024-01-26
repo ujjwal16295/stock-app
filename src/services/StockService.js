@@ -11,6 +11,8 @@ class StockService{
     }
 
     getAllStock=(val,dbRef)=>{
+
+        
         const refForcart= collection(db,dbRef)
 
         if(val==="index"){
