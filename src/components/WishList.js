@@ -4,11 +4,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Options } from './Options'
 import { StockCard } from './StockCard'
 import { ToastContainer, toast } from 'react-toastify';
+import { reset } from '../store/OptionSlice'
 
 
 
 export const WishList = () => {
-    const dispatch= useDispatch()
+  const dispatch= useDispatch()
   const data= useSelector(state=>state.cart)
   const email = useSelector(state=>state.user)
   const [inputVal,setinputVal]=useState("")
@@ -19,6 +20,7 @@ export const WishList = () => {
     useEffect(()=>{
        console.log(email[0])
         dispatch(getStocksForCart(["index",email[0]]))
+        dispatch(reset())
         console.log(stocks)
     },[])
 

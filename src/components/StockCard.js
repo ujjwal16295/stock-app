@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ReactCardFlip from "react-card-flip";
 import { useDispatch, useSelector } from 'react-redux';
 import { addStockCart, addToCart, deleteFromCart, deleteStockCart, getStocksForCart } from '../store/CartSlice';
@@ -7,6 +7,7 @@ import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
+import { reset } from '../store/OptionSlice';
 
 
 
@@ -17,6 +18,7 @@ export const StockCard = (props) => {
    const [flip, setFlip] = useState(false);
    const email = useSelector(state=>state.user)
    const navigate = useNavigate();
+   
 
 
 

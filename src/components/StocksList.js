@@ -8,6 +8,7 @@ import { getStocks } from '../store/StocksSlice'
 import { getStocksForCart } from '../store/CartSlice'
 import { ToastContainer, toast } from 'react-toastify';
 import Select from 'react-select';
+import { reset } from '../store/OptionSlice'
 
 
 
@@ -42,6 +43,7 @@ export const StocksList = () => {
     useEffect(()=>{ dispatch(getStocks(["index",dropdownVal.value])) },[dropdownVal])
 
     useEffect(()=>{ setinputVal("") },[dropdownVal])
+    useEffect(()=>{dispatch(reset())},[dropdownVal])
 
     // useEffect(()=>{},[inputVal])
 
