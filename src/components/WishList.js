@@ -19,7 +19,7 @@ export const WishList = () => {
     useEffect(()=>{
         dispatch(getStocksForCart(["index",email[0]]))
         dispatch(reset())
-    },[])
+    },[email])
 
 
 if(data["status"]==="loading"){
