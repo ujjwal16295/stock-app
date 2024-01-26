@@ -1,9 +1,7 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
 import React, { useState } from 'react'
-import { auth } from '../services/FirebaseConfig'
 import { useDispatch, useSelector } from 'react-redux'
-import { addEmail } from '../store/UserSlice'
-import { Link, redirect, useNavigate } from 'react-router-dom'
+import {  getAuthServer } from '../store/UserSlice'
+import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { Spinner } from './Spinner'
 
@@ -20,41 +18,36 @@ export const Login = () => {
     function Login(e){
       setLoader(true)
        e.preventDefault()
-       signInWithEmailAndPassword(auth,email,password)
-       .then((usercredential)=>{
-        console.log(usercredential)
-        dispatch(addEmail(usercredential.user.email))
-        toast.success("log in successful", {
-            position: "bottom-center",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: false,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-            })
-        setLoader(false)
-        navigate("/wishlist")
+       dispatch(getAuthServer([email,password,"login"]))
+       if(emailCheck==="error"){
 
-
-       })
-       .catch((error)=>{
-  
-        setLoader(false)
         toast.error("log in unsuccessful", {
-            position: "bottom-center",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: false,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-            })
-        console.log(error)
+          position: "bottom-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          })
 
-       })
+       }else{
+        toast.success("log in successful", {
+          position: "bottom-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          })
+          navigate("/wishlist")
+
+
+       }
+       setLoader(false)
     }
   return (
     

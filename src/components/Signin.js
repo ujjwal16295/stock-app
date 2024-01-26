@@ -1,9 +1,7 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
 import React, { useState } from 'react'
-import { auth } from '../services/FirebaseConfig'
 import { useDispatch, useSelector } from 'react-redux'
-import { addEmail } from '../store/UserSlice'
-import { redirect, useNavigate } from 'react-router-dom'
+import {  getAuthServer } from '../store/UserSlice'
+import {  useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { Spinner } from './Spinner'
 
@@ -19,40 +17,37 @@ export const Signin = () => {
     const [loader,setLoader]=useState("")
     function Signin(e){
       setLoader(true)
-       e.preventDefault()
-       createUserWithEmailAndPassword(auth,email,password)
-       .then((usercredential)=>{
-         console.log(usercredential)
-         dispatch(addEmail(usercredential.user.email))
-         toast.success("sign in successful", {
-            position: "bottom-center",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: false,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-            })
-            setLoader(false)
+      e.preventDefault()
+      dispatch(getAuthServer([email,password,"signin"]))
+      if(emailCheck==="error"){
 
+       toast.error("sign in unsuccessful", {
+         position: "bottom-center",
+         autoClose: 2000,
+         hideProgressBar: false,
+         closeOnClick: true,
+         pauseOnHover: false,
+         draggable: true,
+         progress: undefined,
+         theme: "dark",
+         })
+
+      }else{
+       toast.success("sign in successful", {
+         position: "bottom-center",
+         autoClose: 2000,
+         hideProgressBar: false,
+         closeOnClick: true,
+         pauseOnHover: false,
+         draggable: true,
+         progress: undefined,
+         theme: "dark",
+         })
          navigate("/wishlist")
-       })
-       .catch((error)=>{
-        setLoader(false)
 
-        toast.error("sign in unsuccessful", {
-            position: "bottom-center",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: false,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-            })
-         console.log(error)
-       })
+
+      }
+      setLoader(false)
     }
   return (
     <div className='mt-32 md:mt-40'>

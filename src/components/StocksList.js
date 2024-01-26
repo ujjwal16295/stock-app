@@ -6,7 +6,6 @@ import {useDispatch} from "react-redux"
 import {useSelector} from "react-redux"
 import { getStocks } from '../store/StocksSlice'
 import { getStocksForCart } from '../store/CartSlice'
-import { ToastContainer, toast } from 'react-toastify';
 import Select from 'react-select';
 import { reset } from '../store/OptionSlice'
 
@@ -38,14 +37,12 @@ export const StocksList = () => {
       }
         setCheck(1)
         dispatch(getStocks(["index",dropdownVal.value]))
-        console.log(stocks)
     },[])
     useEffect(()=>{ dispatch(getStocks(["index",dropdownVal.value])) },[dropdownVal])
 
     useEffect(()=>{ setinputVal("") },[dropdownVal])
     useEffect(()=>{dispatch(reset())},[dropdownVal])
 
-    // useEffect(()=>{},[inputVal])
 
 if(data["status"]==="loading"){
   return <div className='h-screen flex items-center justify-center  '><div className='text-4xl'>stocks loading</div></div>
@@ -62,7 +59,6 @@ if(data["status"]==="error"){
     <div>
      <div className='flex items-center justify-center my-4 mt-32 md:mt-40'> 
      <div  className='text-3xl'>
-     {/* Nifty 100 */}
      <Select options={options} defaultValue={dropdownVal} placeholder="select index" onChange={setDropdownVal}  />
      </div>
      </div>
