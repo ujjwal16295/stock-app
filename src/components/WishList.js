@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Options } from './Options'
 import { StockCard } from './StockCard'
 import { reset } from '../store/OptionSlice'
+import { getAuthServer } from '../store/UserSlice'
 
 
 
@@ -14,10 +15,12 @@ export const WishList = () => {
   const [inputVal,setinputVal]=useState("")
 
   const stocks = data["data"]
- 
+   
+  useEffect(()=>{dispatch(getAuthServer(["random","random","check"]))  },[])
+
 
     useEffect(()=>{
-        dispatch(getStocksForCart(["index",email[0]]))
+        dispatch(getStocksForCart(["index",email[email.length-1]]))
         dispatch(reset())
     },[email])
 

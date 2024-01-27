@@ -29,7 +29,6 @@ const CartSlice=createSlice({
 export default CartSlice.reducer;
 
 export const getStocksForCart=createAsyncThunk("carts/get",async(value)=>{
-
     const val1 = value[0]
     const val2 = value[1]
     const response=await fetch("https://backend-for-stock.onrender.com/cart",{

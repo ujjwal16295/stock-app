@@ -8,6 +8,7 @@ import { getStocks } from '../store/StocksSlice'
 import { getStocksForCart } from '../store/CartSlice'
 import Select from 'react-select';
 import { reset } from '../store/OptionSlice'
+import { getAuthServer } from '../store/UserSlice'
 
 
 
@@ -31,13 +32,23 @@ export const StocksList = () => {
  
   const [inputVal,setinputVal]=useState("")
 
+
+
+
     useEffect(()=>{
-      if(check===0){
-      dispatch(getStocksForCart(["index",email[0]]))
-      }
-        setCheck(1)
+      dispatch(getAuthServer(["randomp","randomp","check"]))
+      // if(check===0){
+      console.log("called ")
+      // }
+      //   setCheck(1)
         dispatch(getStocks(["index",dropdownVal.value]))
     },[])
+    useEffect(()=>{
+      dispatch(getStocksForCart(["index",email[email.length-1]]))
+
+    },[email])
+    useEffect(()=>{console.log(email)},[])
+
     useEffect(()=>{ dispatch(getStocks(["index",dropdownVal.value])) },[dropdownVal])
 
     useEffect(()=>{ setinputVal("") },[dropdownVal])
