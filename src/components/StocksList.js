@@ -32,11 +32,13 @@ export const StocksList = () => {
   const [inputVal,setinputVal]=useState("")
 
     useEffect(()=>{
+      dispatch(getStocks(["index",dropdownVal.value]))
       if(check===0){
+        if(email[0]){
       dispatch(getStocksForCart(["index",email[0]]))
+      setCheck(1)
+        }
       }
-        setCheck(1)
-        dispatch(getStocks(["index",dropdownVal.value]))
     },[])
     useEffect(()=>{ dispatch(getStocks(["index",dropdownVal.value])) },[dropdownVal])
 

@@ -17,7 +17,9 @@ export const WishList = () => {
  
 
     useEffect(()=>{
+      if(email[0]){
         dispatch(getStocksForCart(["index",email[0]]))
+      }
         dispatch(reset())
     },[email])
 
