@@ -26,6 +26,7 @@ const StocksSlice=createSlice({
 
 export default StocksSlice.reducer;
 export const getStocks=createAsyncThunk("products/get",async(val)=>{
+
     const val1 = val[0]
     const val2 = val[1]
     const response=await fetch("https://backend-for-stock.onrender.com",{
@@ -37,7 +38,8 @@ export const getStocks=createAsyncThunk("products/get",async(val)=>{
       })
 
       const result=await response.json()
-      return result  
+      return result
+  
 })
 
 
