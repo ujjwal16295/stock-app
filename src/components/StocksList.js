@@ -32,6 +32,7 @@ export const StocksList = () => {
   const [inputVal,setinputVal]=useState("")
 
     useEffect(()=>{
+      console.log("hello")
       if(check===0){
       dispatch(getStocksForCart(["index",email[0]]))
       }
